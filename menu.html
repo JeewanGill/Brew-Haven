@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Brew Haven</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .menu-container {
+            padding: 120px 5% 5rem;
+            min-height: 100vh;
+        }
+
+        .menu-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .menu-header h1 {
+            color: #4a3428;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .menu-categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 0.8rem 1.5rem;
+            background: none;
+            border: 2px solid #4a3428;
+            color: #4a3428;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .category-btn.active,
+        .category-btn:hover {
+            background: #4a3428;
+            color: white;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .menu-item-content {
+            padding: 1.5rem;
+        }
+
+        .menu-item-content h3 {
+            color: #4a3428;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-item-content p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .menu-item-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-weight: 600;
+            color: #4a3428;
+        }
+
+        .add-to-cart {
+            background: #4a3428;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background: #6b4c3b;
+        }
+
+        @media (max-width: 768px) {
+            .menu-header h1 {
+                font-size: 2rem;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>Brew Haven</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="menu.html" class="active">Menu</a>
+                <a href="shop.html">Shop</a>
+                <a href="about.html">About</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="nav-icons">
+                <a href="cart.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+                <button class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="menu-container">
+        <div class="menu-header">
+            <h1>Our Menu</h1>
+            <p>Discover our carefully crafted coffee selection</p>
+        </div>
+
+        <div class="menu-categories">
+            <button class="category-btn active" data-category="all">All</button>
+            <button class="category-btn" data-category="hot">Hot Coffee</button>
+            <button class="category-btn" data-category="cold">Cold Coffee</button>
+            <button class="category-btn" data-category="specialty">Specialty</button>
+        </div>
+
+        <div class="menu-grid">
+            <div class="menu-item" data-category="hot">
+                <img src="caflatee.jpg" alt="Café Latte">
+                <div class="menu-item-content">
+                    <h3>Café Latte</h3>
+                    <p>Smooth espresso with steamed milk and a light layer of foam</p>
+                    <div class="menu-item-footer">
+                        <span class="price">$4.99</span>
+                        <button class="add-to-cart" data-id="1">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="hot">
+                <img src="capa.jpg" alt="Cappuccino">
+                <div class="menu-item-content">
+                    <h3>Cappuccino</h3>
+                    <p>Equal parts espresso, steamed milk, and foam</p>
+                    <div class="menu-item-footer">
+                        <span class="price">$4.49</span>
+                        <button class="add-to-cart" data-id="2">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="cold">
+                <img src="cold.jpg" alt="Cold Brew">
+                <div class="menu-item-content">
+                    <h3>Cold Brew</h3>
+                    <p>Slow-steeped for 24 hours for a smooth, rich flavor</p>
+                    <div class="menu-item-footer">
+                        <span class="price">$5.99</span>
+                        <button class="add-to-cart" data-id="3">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="specialty">
+                <img src="hchoco.jpg" alt="Hot Chocolate">
+                <div class="menu-item-content">
+                    <h3>Hot Chocolate</h3>
+                    <p>Rich and creamy chocolate drink with whipped cream</p>
+                    <div class="menu-item-footer">
+                        <span class="price">$4.99</span>
+                        <button class="add-to-cart" data-id="4">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="cold">
+                <img src="icec.jpg" alt="Iced Coffee">
+                <div class="menu-item-content">
+                    <h3>Iced Coffee</h3>
+                    <p>Chilled coffee served over ice with your choice of milk</p>
+                    <div class="menu-item-footer">
+                        <span class="price">$4.49</span>
+                        <button class="add-to-cart" data-id="5">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item" data-category="specialty">
+                <img src="spanish.jpg" alt="Spanish Latte">
+                <div class="menu-item-content">
+                    <h3>Spanish Latte</h3>
+                    <p>Espresso with condensed milk and steamed milk</p>
+                    <div class="menu-item-footer">
+                        <span class="price">$5.49</span>
+                        <button class="add-to-cart" data-id="6">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Brew Haven</h3>
+                <p>Your perfect coffee destination</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Brew Haven. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Cart functionality
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        updateCartCount();
+
+        // Category filtering
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const menuItems = document.querySelectorAll('.menu-item');
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                const category = button.dataset.category;
+
+                menuItems.forEach(item => {
+                    if (category === 'all' || item.dataset.category === category) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Add to cart functionality
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const productId = e.target.dataset.id;
+                const menuItem = e.target.closest('.menu-item');
+                const product = {
+                    id: productId,
+                    name: menuItem.querySelector('h3').textContent,
+                    price: menuItem.querySelector('.price').textContent,
+                    image: menuItem.querySelector('img').src,
+                    quantity: 1
+                };
+
+                addToCart(product);
+                showNotification('Product added to cart!');
+            });
+        });
+
+        function addToCart(product) {
+            const existingProduct = cart.find(item => item.id === product.id);
+            
+            if (existingProduct) {
+                existingProduct.quantity += 1;
+            } else {
+                cart.push(product);
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+        }
+
+        function updateCartCount() {
+            const cartCount = document.querySelector('.cart-count');
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+    </script>
+</body>
+</html> 

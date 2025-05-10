@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Brew Haven</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .shop-container {
+            padding: 120px 5% 5rem;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .shop-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .shop-header:hover {
+            transform: translateY(-5px);
+        }
+
+        .shop-header h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            background: white;
+            color: #2c3e50;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background: #3498db;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .product-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-content {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            color: #2c3e50;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-description {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .product-price {
+            display: block;
+            font-weight: 600;
+            color: #3498db;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 0.8rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .add-to-cart:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .shop-header h1 {
+                font-size: 2rem;
+            }
+
+            .categories {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .category-btn {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>Brew Haven</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="menu.html">Menu</a>
+                <a href="shop.html" class="active">Shop</a>
+                <a href="about.html">About</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="nav-icons">
+                <a href="cart.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+                <button class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="shop-container">
+        <div class="shop-header">
+            <h1>Our Shop</h1>
+            <p>Discover our premium coffee equipment and accessories</p>
+        </div>
+
+        <div class="categories">
+            <button class="category-btn active" data-category="all">All</button>
+            <button class="category-btn" data-category="equipment">Equipment</button>
+            <button class="category-btn" data-category="accessories">Accessories</button>
+            <button class="category-btn" data-category="beans">Coffee Beans</button>
+        </div>
+
+        <div class="product-grid">
+            <!-- Equipment Products -->
+            <div class="product-card" data-category="equipment">
+                <div class="product-image">
+                    <img src="machine.jpg" alt="Professional Espresso Machine">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">Professional Espresso Machine</h3>
+                    <p class="product-description">Commercial-grade espresso machine with advanced brewing technology</p>
+                    <span class="product-price">$1,299.99</span>
+                    <button class="add-to-cart" data-id="espresso-machine" data-name="Professional Espresso Machine" data-price="1299.99" data-image="machine.jpg">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="equipment">
+                <div class="product-image">
+                    <img src="grinder.jpg" alt="Burr Coffee Grinder">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">Burr Coffee Grinder</h3>
+                    <p class="product-description">Precision grinding with 40 grind settings for perfect coffee</p>
+                    <span class="product-price">$299.99</span>
+                    <button class="add-to-cart" data-id="burr-grinder" data-name="Burr Coffee Grinder" data-price="299.99" data-image="grinder.jpg">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="equipment">
+                <div class="product-image">
+                    <img src="frother.jpg" alt="Electric Milk Frother">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">Electric Milk Frother</h3>
+                    <p class="product-description">Create perfect microfoam for lattes and cappuccinos</p>
+                    <span class="product-price">$49.99</span>
+                    <button class="add-to-cart" data-id="milk-frother" data-name="Electric Milk Frother" data-price="49.99" data-image="frother.jpg">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Accessories -->
+            <div class="product-card" data-category="accessories">
+                <div class="product-image">
+                    <img src="mug.jpg" alt="Ceramic Coffee Mug">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">Ceramic Coffee Mug</h3>
+                    <p class="product-description">Handcrafted ceramic mug with modern design</p>
+                    <span class="product-price">$24.99</span>
+                    <button class="add-to-cart" data-id="ceramic-mug" data-name="Ceramic Coffee Mug" data-price="24.99" data-image="mug.jpg">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-category="accessories">
+                <div class="product-image">
+                    <img src="travel-mug.jpg" alt="Insulated Travel Mug">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">Insulated Travel Mug</h3>
+                    <p class="product-description">Keep your coffee hot for hours with this vacuum-insulated mug</p>
+                    <span class="product-price">$34.99</span>
+                    <button class="add-to-cart" data-id="travel-mug" data-name="Insulated Travel Mug" data-price="34.99" data-image="travel-mug.jpg">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Coffee Beans -->
+            <div class="product-card" data-category="beans">
+                <div class="product-image">
+                    <img src="bean.jpg" alt="Premium Arabica Beans">
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">Premium Arabica Beans</h3>
+                    <p class="product-description">Single-origin Arabica beans, freshly roasted</p>
+                    <span class="product-price">$19.99</span>
+                    <button class="add-to-cart" data-id="arabica-beans" data-name="Premium Arabica Beans" data-price="19.99" data-image="bean.jpg">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Brew Haven</h3>
+                <p>Your perfect coffee destination</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Brew Haven. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Cart functionality
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        updateCartCount();
+
+        function updateCartCount() {
+            const cartCount = document.querySelector('.cart-count');
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+        }
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Category filtering
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const productCards = document.querySelectorAll('.product-card');
+
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const category = btn.dataset.category;
+                
+                productCards.forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Add to cart functionality
+        const addToCartBtns = document.querySelectorAll('.add-to-cart');
+        
+        addToCartBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const product = {
+                    id: btn.dataset.id,
+                    name: btn.dataset.name,
+                    price: parseFloat(btn.dataset.price),
+                    image: btn.dataset.image,
+                    quantity: 1
+                };
+
+                const existingProduct = cart.find(item => item.id === product.id);
+                
+                if (existingProduct) {
+                    existingProduct.quantity += 1;
+                } else {
+                    cart.push(product);
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCount();
+                showNotification(`${product.name} added to cart!`);
+            });
+        });
+
+        // Notification system
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Add 3D effect to product cards
+        const cards = document.querySelectorAll('.product-card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+            });
+        });
+    </script>
+</body>
+</html> 
